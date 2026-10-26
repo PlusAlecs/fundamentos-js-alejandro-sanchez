@@ -90,6 +90,7 @@ console.log("=== PROCESANDO PEDIDO ===");
 var ticketProductos = [];
 var ticketCantidades = [];
 var ticketPrecios = [];
+var agotados = [];
 
 for(var i = 0; i < pedidoProductos.length; i++){
 	var indice = buscarProducto(productos, pedidoProductos[i]);
@@ -108,6 +109,7 @@ for(var i = 0; i < pedidoProductos.length; i++){
 	}
 	else if(stock[indice] == 0){
 		console.log("AVISO: " + pedidoProductos[i] + " está agotado");
+		agotados.push(pedidoProductos[i]);
 		continue;
 	}
 	else{
@@ -115,6 +117,7 @@ for(var i = 0; i < pedidoProductos.length; i++){
 		ticketProductos.push(pedidoProductos[i]);
 		ticketCantidades.push(stock[indice]);
 		ticketPrecios.push(precios[indice]);
+		agotados.push(pedidoProductos[i]);
 		stock[indice] = 0;
 	}
 }
@@ -155,5 +158,10 @@ var string = productos[0] + ": " + stock[0];
 for(var i = 1; i < productos.length; i++){
 	string = string + " · " + productos[i] + ": " + stock[i]
 }
+console.log(string);
 
+string = "Agotados: " + agotados[0];
+for(var i = 1; i < agotados.length; i++){
+	string = string + ", " + agotados[i]
+}
 console.log(string);
