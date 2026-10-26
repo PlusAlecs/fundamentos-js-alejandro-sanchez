@@ -9,3 +9,5 @@
 | 26/10/2026 | Catálogo | Sin uso de la IA | 
 
 | 26/10/2026 | Buscar | Sin uso de la IA | 
+
+| 26/10/2026 | Funciones | Sin uso de la IA | 
