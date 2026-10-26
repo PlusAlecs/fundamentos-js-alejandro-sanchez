@@ -1,0 +1,5 @@
+| Fecha | Ejercicio | Herramienta | Qué le pedí (prompt) | Qué me respondió | Qué hice con la respuesta | 
+
+|---|---|---|---|---|---| 
+
+| 26/10/2026 | Ticket | Sin uso de la IA | 
