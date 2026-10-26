@@ -12,3 +12,5 @@ var total = subtotal + iva;
 console.log("Producto: " + producto);
 console.log(cantidad + " x " + precio.toFixed(2) + " €");
 console.log("Subtotal: " + subtotal.toFixed(2) + " €");
+console.log("IVA (21%): " + iva.toFixed(2) + " €");
+console.log("TOTAL: " + total.toFixed(2) + " €");
