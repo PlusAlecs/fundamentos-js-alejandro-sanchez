@@ -7,8 +7,12 @@ const stock     = [10, 25, 3, 0, 7];
 
 
 // Pedido del cliente (también arrays paralelos) 
-const pedidoProductos  = ["Ratón", "Monitor", "Auriculares", "Teclado", "Altavoz"]; 
-const pedidoCantidades = [2, 4, 1, 1, 1]; 
+//const pedidoProductos  = ["Ratón", "Monitor", "Auriculares", "Teclado", "Altavoz"]; 
+//const pedidoCantidades = [2, 4, 1, 1, 1]; 
+
+// Pedido alternativo
+const pedidoProductos  = ["Ratón"];
+const pedidoCantidades = [1]; 
 
 function calcularImporteLinea(precio, cantidad){
 	return precio * cantidad;
@@ -24,6 +28,9 @@ function calcularDescuento(importe) {
 	}
 	else if (importe > 50){
 		return importe * 0.05;
+	}
+	else{
+		return 0;
 	}
 }
 
@@ -130,7 +137,7 @@ for(var i = 0; i < ticketProductos.length; i++){
 	console.log(ticketCantidades[i] + " x " + ticketProductos[i] + " (" + ticketPrecios[i].toFixed(2) + " €) = " + linea.toFixed(2) + " €");
 	subtotal += linea;
 }
-console.log("Subtotal: " + subtotal);
+console.log("Subtotal: " + subtotal.toFixed(2));
 
 var descuento = calcularDescuento(subtotal);
 console.log("Descuento: -" + descuento.toFixed(2) + " €"); 
@@ -149,7 +156,7 @@ else{
 	console.log("Envío: "+ envio.toFixed(2) + " €");
 }
 
-console.log("TOTAL: " + (subtotal - descuento + iva).toFixed(2) + " €")
+console.log("TOTAL: " + (subtotal - descuento + iva + envio).toFixed(2) + " €")
 
 console.log("");
 console.log("=== STOCK ACTUALIZADO ===");
