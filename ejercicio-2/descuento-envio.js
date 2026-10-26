@@ -1,6 +1,6 @@
 // JavaScript source code
 
-const importe = 30;
+const importe = 100.01;
 console.log("Importe: " + importe.toFixed(2) + " €");
 
 var descuento = 0;
