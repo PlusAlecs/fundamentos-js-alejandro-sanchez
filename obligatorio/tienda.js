@@ -7,12 +7,12 @@ const stock     = [10, 25, 3, 0, 7];
 
 
 // Pedido del cliente (también arrays paralelos) 
-//const pedidoProductos  = ["Ratón", "Monitor", "Auriculares", "Teclado", "Altavoz"]; 
-//const pedidoCantidades = [2, 4, 1, 1, 1]; 
+const pedidoProductos  = ["Ratón", "Monitor", "Auriculares", "Teclado", "Altavoz"]; 
+const pedidoCantidades = [2, 4, 1, 1, 1]; 
 
 // Pedido alternativo
-const pedidoProductos  = ["Ratón"];
-const pedidoCantidades = [1]; 
+//const pedidoProductos  = ["Ratón"];
+//const pedidoCantidades = [1]; 
 
 function calcularImporteLinea(precio, cantidad){
 	return precio * cantidad;
