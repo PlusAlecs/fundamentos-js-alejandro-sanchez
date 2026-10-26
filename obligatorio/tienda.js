@@ -121,6 +121,18 @@ for(var i = 0; i < pedidoProductos.length; i++){
 console.log("");
 console.log("=== TICKET ===");
 
+var subtotal = 0;
 for(var i = 0; i < ticketProductos.length; i++){
-	console.log(ticketCantidades[i] + " x " + ticketProductos[i] + " (" + ticketPrecios[i].toFixed(2) + " €) = " + calcularImporteLinea(ticketPrecios[i], ticketCantidades[i]).toFixed(2) + " €");
+	var linea = calcularImporteLinea(ticketPrecios[i], ticketCantidades[i]);
+	console.log(ticketCantidades[i] + " x " + ticketProductos[i] + " (" + ticketPrecios[i].toFixed(2) + " €) = " + linea.toFixed(2) + " €");
+	subtotal += linea;
 }
+console.log("Subtotal: " + subtotal);
+
+var descuento = calcularDescuento(subtotal);
+console.log("Descuento: -" + descuento.toFixed(2) + " €"); 
+
+console.log("Base imponible: "+ (subtotal - descuento).toFixed(2) + " €");
+
+var iva = calcularIVA(subtotal - descuento);
+console.log("IVA (21%): "+ iva.toFixed(2) + " €");
