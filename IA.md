@@ -7,3 +7,5 @@
 | 26/10/2026 | Descuento envío | Sin uso de la IA | 
 
 | 26/10/2026 | Catálogo | Sin uso de la IA | 
+
+| 26/10/2026 | Buscar | Sin uso de la IA | 
