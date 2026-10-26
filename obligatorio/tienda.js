@@ -136,3 +136,14 @@ console.log("Base imponible: "+ (subtotal - descuento).toFixed(2) + " €");
 
 var iva = calcularIVA(subtotal - descuento);
 console.log("IVA (21%): "+ iva.toFixed(2) + " €");
+
+var envio = calcularEnvio(subtotal - descuento);
+
+if(envio == 0){
+	console.log("Envío: Gratis");
+}
+else{
+	console.log("Envío: "+ envio.toFixed(2) + " €");
+}
+
+console.log("TOTAL: " + (subtotal - descuento + iva).toFixed(2) + " €")
