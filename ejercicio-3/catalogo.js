@@ -30,6 +30,6 @@ console.log("");
 
 console.log("Productos agotados: " + agotados);
 console.log("Producto mas caro: " + productos[masCaro] + " (" + precios[masCaro].toFixed(2) + " €)");
-console.log("Valor del invetario: " + valorInventario.toFixed(2));
+console.log("Valor del invetario: " + valorInventario.toFixed(2) + " €");
 
 
