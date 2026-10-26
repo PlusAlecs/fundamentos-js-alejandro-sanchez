@@ -120,3 +120,7 @@ for(var i = 0; i < pedidoProductos.length; i++){
 }
 console.log("");
 console.log("=== TICKET ===");
+
+for(var i = 0; i < ticketProductos.length; i++){
+	console.log(ticketCantidades[i] + " x " + ticketProductos[i] + " (" + ticketPrecios[i].toFixed(2) + " €) = " + calcularImporteLinea(ticketPrecios[i], ticketCantidades[i]).toFixed(2) + " €");
+}
