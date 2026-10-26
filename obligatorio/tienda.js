@@ -147,3 +147,13 @@ else{
 }
 
 console.log("TOTAL: " + (subtotal - descuento + iva).toFixed(2) + " €")
+
+console.log("");
+console.log("=== STOCK ACTUALIZADO ===");
+
+var string = productos[0] + ": " + stock[0];
+for(var i = 1; i < productos.length; i++){
+	string = string + " · " + productos[i] + ": " + stock[i]
+}
+
+console.log(string);
