@@ -9,7 +9,7 @@ var found = false;
 
 for (var i = 0; i < productos.length; i++){
 
-	if (buscado == productos[i]){
+	if (buscado.toLowerCase() == productos[i].toLowerCase()){
 		console.log(productos[i] + " está en la posición " + i + ". Precio: " + precios[i].toFixed(2) + " €. Stock: " + stock[i]);
 		found = true;
 		break;
