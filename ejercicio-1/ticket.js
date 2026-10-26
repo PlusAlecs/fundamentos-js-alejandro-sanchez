@@ -1,8 +1,8 @@
 // JavaScript source code
 
-const producto = "Monitor"; 
-const precio = 189;      // precio por unidad, sin IVA 
-const cantidad = 2; 
+const producto = "Ratón"; 
+const precio = 19.90;      // precio por unidad, sin IVA 
+const cantidad = 3; 
 const porcentajeIva = 21; 
 
 var subtotal = precio * cantidad;
