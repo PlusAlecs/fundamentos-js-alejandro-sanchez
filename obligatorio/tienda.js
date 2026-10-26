@@ -14,6 +14,9 @@ const pedidoCantidades = [2, 4, 1, 1, 1];
 //const pedidoProductos  = ["Ratón"];
 //const pedidoCantidades = [1]; 
 
+//EXTRA: Cupón
+const cupon = "BIENVENIDA";
+
 function calcularImporteLinea(precio, cantidad){
 	return precio * cantidad;
 }
@@ -23,7 +26,11 @@ function calcularIVA(importe) {
 }
 
 function calcularDescuento(importe) {
-	if (importe > 100){
+	
+	if(cupon == "BIENVENIDA"){
+		return importe * 0.15;
+	}
+	else if (importe > 100){
 		return importe * 0.1;
 	}
 	else if (importe > 50){
@@ -140,6 +147,13 @@ for(var i = 0; i < ticketProductos.length; i++){
 console.log("Subtotal: " + subtotal.toFixed(2));
 
 var descuento = calcularDescuento(subtotal);
+if(cupon == "BIENVENIDA"){
+	console.log("Descuento especial canjeado!"); 
+}
+else if (cupon != ""){
+	console.log("Cupón inválido, aplicando descuento normal."); 
+}
+
 console.log("Descuento: -" + descuento.toFixed(2) + " €"); 
 
 console.log("Base imponible: "+ (subtotal - descuento).toFixed(2) + " €");
