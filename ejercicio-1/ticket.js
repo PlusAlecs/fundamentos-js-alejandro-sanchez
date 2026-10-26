@@ -8,3 +8,5 @@ const porcentajeIva = 21;
 var subtotal = precio * cantidad;
 var iva = subtotal * (21/100);
 var total = subtotal + iva;
+
+console.log("Producto: " + producto);
