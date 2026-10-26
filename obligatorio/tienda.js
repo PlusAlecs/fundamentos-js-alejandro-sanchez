@@ -87,6 +87,10 @@ function buscarProducto(productos, nombre) {
 
 console.log("=== PROCESANDO PEDIDO ===");
 
+var ticketProductos = [];
+var ticketCantidades = [];
+var ticketPrecios = [];
+
 for(var i = 0; i < pedidoProductos.length; i++){
 	var indice = buscarProducto(productos, pedidoProductos[i]);
 
@@ -96,6 +100,10 @@ for(var i = 0; i < pedidoProductos.length; i++){
 	}
 	else if(pedidoCantidades[i] <= stock[indice]){
 		console.log("OK: " + pedidoCantidades[i] + " x " + pedidoProductos[i]);
+		ticketProductos.push(pedidoProductos[i]);
+		ticketCantidades.push(pedidoCantidades[i]);
+		ticketPrecios.push(precios[indice]);
+		stock[indice] -= pedidoCantidades[i];
 		continue;
 	}
 	else if(stock[indice] == 0){
@@ -103,6 +111,12 @@ for(var i = 0; i < pedidoProductos.length; i++){
 		continue;
 	}
 	else{
-		console.log("AVISO: Solo hay " + stock[indice] + " cantidades de " + pedidoProductos[i] + ", se sirven " + stock[indice]);
+		console.log("AVISO: Solo hay " + stock[indice] + " uds de " + pedidoProductos[i] + ", se sirven " + stock[indice]);
+		ticketProductos.push(pedidoProductos[i]);
+		ticketCantidades.push(stock[indice]);
+		ticketPrecios.push(precios[indice]);
+		stock[indice] = 0;
 	}
 }
+console.log("");
+console.log("=== TICKET ===");
