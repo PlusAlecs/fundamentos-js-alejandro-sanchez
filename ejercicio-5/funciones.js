@@ -38,17 +38,18 @@ function contarAgotados(stock) {
 	return agotados;
 }
 
+
 function productoMasCaro(productos, precios){
-	var masCaro = -1;
+	var masCaro = 0;
 
 	for (var i = 0; i < productos.length; i++)
 	{
 		if(precios[i] > precios[masCaro]){
 			masCaro = i;
 		}
-	
-		return productos[masCaro];
 	}
+
+	return productos[masCaro];
 }
 
 function valorInventario(precios, stock) {
@@ -57,8 +58,9 @@ function valorInventario(precios, stock) {
 	for (var i = 0; i < precios.length; i++)
 	{
 		valorInventario += precios[i] * stock[i];
-		return valorInventario;
 	}
+
+	return valorInventario;
 }
 
 function buscarProducto(productos, nombre) {
