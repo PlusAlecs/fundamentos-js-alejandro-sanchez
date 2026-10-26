@@ -106,6 +106,8 @@ var ticketCantidades = [];
 var ticketPrecios = [];
 var agotados = [];
 
+var totalUnidades = 0;
+
 for(var i = 0; i < pedidoProductos.length; i++){
 	var indice = buscarProducto(productos, pedidoProductos[i]);
 
@@ -119,6 +121,7 @@ for(var i = 0; i < pedidoProductos.length; i++){
 		ticketCantidades.push(pedidoCantidades[i]);
 		ticketPrecios.push(precios[indice]);
 		stock[indice] -= pedidoCantidades[i];
+		totalUnidades += pedidoCantidades[i];
 		continue;
 	}
 	else if(stock[indice] == 0){
@@ -132,6 +135,7 @@ for(var i = 0; i < pedidoProductos.length; i++){
 		ticketCantidades.push(stock[indice]);
 		ticketPrecios.push(precios[indice]);
 		agotados.push(pedidoProductos[i]);
+		totalUnidades += stock[indice];
 		stock[indice] = 0;
 	}
 }
@@ -171,6 +175,13 @@ else{
 }
 
 console.log("TOTAL: " + (subtotal - descuento + iva + envio).toFixed(2) + " €")
+
+console.log("");
+console.log("=== RESUMEN ===");
+console.log("Total de unidades: " + totalUnidades);
+
+var masCaroTicket = productoMasCaro(ticketProductos, ticketPrecios) 
+console.log("Mayor importe: " + masCaroTicket + " (" + ticketPrecios[buscarProducto(ticketProductos, masCaroTicket)].toFixed(2) + " €)");
 
 console.log("");
 console.log("=== STOCK ACTUALIZADO ===");
