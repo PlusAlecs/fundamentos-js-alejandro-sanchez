@@ -86,3 +86,23 @@ function buscarProducto(productos, nombre) {
 }
 
 console.log("=== PROCESANDO PEDIDO ===");
+
+for(var i = 0; i < pedidoProductos.length; i++){
+	var indice = buscarProducto(productos, pedidoProductos[i]);
+
+	if(indice == -1){
+		console.log("AVISO: " + pedidoProductos[i] + " no existe en el catálogo");
+		continue;
+	}
+	else if(pedidoCantidades[i] <= stock[indice]){
+		console.log("OK: " + pedidoCantidades[i] + " x " + pedidoProductos[i]);
+		continue;
+	}
+	else if(stock[indice] == 0){
+		console.log("AVISO: " + pedidoProductos[i] + " está agotado");
+		continue;
+	}
+	else{
+		console.log("AVISO: Solo hay " + stock[indice] + " cantidades de " + pedidoProductos[i] + ", se sirven " + stock[indice]);
+	}
+}
