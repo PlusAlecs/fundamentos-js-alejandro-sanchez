@@ -106,6 +106,8 @@ var ticketCantidades = [];
 var ticketPrecios = [];
 var agotados = [];
 
+var restantesCantidades = [];
+
 var totalUnidades = 0;
 
 for(var i = 0; i < pedidoProductos.length; i++){
@@ -127,6 +129,7 @@ for(var i = 0; i < pedidoProductos.length; i++){
 	else if(stock[indice] == 0){
 		console.log("AVISO: " + pedidoProductos[i] + " está agotado");
 		agotados.push(pedidoProductos[i]);
+		restantesCantidades.push(pedidoCantidades[i]);
 		continue;
 	}
 	else{
@@ -135,10 +138,13 @@ for(var i = 0; i < pedidoProductos.length; i++){
 		ticketCantidades.push(stock[indice]);
 		ticketPrecios.push(precios[indice]);
 		agotados.push(pedidoProductos[i]);
+		restantesCantidades.push(pedidoCantidades[i] - stock[indice]);
 		totalUnidades += stock[indice];
 		stock[indice] = 0;
 	}
 }
+
+
 console.log("");
 console.log("=== TICKET ===");
 
@@ -176,12 +182,14 @@ else{
 
 console.log("TOTAL: " + (subtotal - descuento + iva + envio).toFixed(2) + " €")
 
+
 console.log("");
 console.log("=== RESUMEN ===");
 console.log("Total de unidades: " + totalUnidades);
 
 var masCaroTicket = productoMasCaro(ticketProductos, ticketPrecios) 
 console.log("Mayor importe: " + masCaroTicket + " (" + ticketPrecios[buscarProducto(ticketProductos, masCaroTicket)].toFixed(2) + " €)");
+
 
 console.log("");
 console.log("=== STOCK ACTUALIZADO ===");
@@ -197,3 +205,12 @@ for(var i = 1; i < agotados.length; i++){
 	string = string + ", " + agotados[i]
 }
 console.log(string);
+
+if(agotados.length > 0){
+	console.log("");
+	console.log("=== PRODUCTOS NO SERVIDOS ===");
+	
+	for(var i = 0; i < agotados.length; i++){
+		console.log(agotados[i] + ": Faltan " + restantesCantidades[i] + " uds.");
+	}
+}
