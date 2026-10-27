@@ -14,6 +14,9 @@ const pedidoCantidades = [2, 4, 1, 1, 1];
 //const pedidoProductos  = ["Ratón"];
 //const pedidoCantidades = [1]; 
 
+//EXTRA: Cupón
+const cupon = "BIENVENIDA";
+
 function calcularImporteLinea(precio, cantidad){
 	return precio * cantidad;
 }
@@ -23,7 +26,11 @@ function calcularIVA(importe) {
 }
 
 function calcularDescuento(importe) {
-	if (importe > 100){
+	
+	if(cupon == "BIENVENIDA"){
+		return importe * 0.15;
+	}
+	else if (importe > 100){
 		return importe * 0.1;
 	}
 	else if (importe > 50){
@@ -99,6 +106,10 @@ var ticketCantidades = [];
 var ticketPrecios = [];
 var agotados = [];
 
+var restantesCantidades = [];
+
+var totalUnidades = 0;
+
 for(var i = 0; i < pedidoProductos.length; i++){
 	var indice = buscarProducto(productos, pedidoProductos[i]);
 
@@ -112,11 +123,13 @@ for(var i = 0; i < pedidoProductos.length; i++){
 		ticketCantidades.push(pedidoCantidades[i]);
 		ticketPrecios.push(precios[indice]);
 		stock[indice] -= pedidoCantidades[i];
+		totalUnidades += pedidoCantidades[i];
 		continue;
 	}
 	else if(stock[indice] == 0){
 		console.log("AVISO: " + pedidoProductos[i] + " está agotado");
 		agotados.push(pedidoProductos[i]);
+		restantesCantidades.push(pedidoCantidades[i]);
 		continue;
 	}
 	else{
@@ -125,9 +138,13 @@ for(var i = 0; i < pedidoProductos.length; i++){
 		ticketCantidades.push(stock[indice]);
 		ticketPrecios.push(precios[indice]);
 		agotados.push(pedidoProductos[i]);
+		restantesCantidades.push(pedidoCantidades[i] - stock[indice]);
+		totalUnidades += stock[indice];
 		stock[indice] = 0;
 	}
 }
+
+
 console.log("");
 console.log("=== TICKET ===");
 
@@ -140,6 +157,13 @@ for(var i = 0; i < ticketProductos.length; i++){
 console.log("Subtotal: " + subtotal.toFixed(2));
 
 var descuento = calcularDescuento(subtotal);
+if(cupon == "BIENVENIDA"){
+	console.log("Descuento especial canjeado!"); 
+}
+else if (cupon != ""){
+	console.log("Cupón inválido, aplicando descuento normal."); 
+}
+
 console.log("Descuento: -" + descuento.toFixed(2) + " €"); 
 
 console.log("Base imponible: "+ (subtotal - descuento).toFixed(2) + " €");
@@ -158,6 +182,15 @@ else{
 
 console.log("TOTAL: " + (subtotal - descuento + iva + envio).toFixed(2) + " €")
 
+
+console.log("");
+console.log("=== RESUMEN ===");
+console.log("Total de unidades: " + totalUnidades);
+
+var masCaroTicket = productoMasCaro(ticketProductos, ticketPrecios) 
+console.log("Mayor importe: " + masCaroTicket + " (" + ticketPrecios[buscarProducto(ticketProductos, masCaroTicket)].toFixed(2) + " €)");
+
+
 console.log("");
 console.log("=== STOCK ACTUALIZADO ===");
 
@@ -172,3 +205,12 @@ for(var i = 1; i < agotados.length; i++){
 	string = string + ", " + agotados[i]
 }
 console.log(string);
+
+if(agotados.length > 0){
+	console.log("");
+	console.log("=== PRODUCTOS NO SERVIDOS ===");
+	
+	for(var i = 0; i < agotados.length; i++){
+		console.log(agotados[i] + ": Faltan " + restantesCantidades[i] + " uds.");
+	}
+}

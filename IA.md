@@ -11,3 +11,5 @@
 | 26/10/2026 | Funciones | Sin uso de la IA | 
 
 | 27/10/2026 | Tienda | Sin uso de la IA | 
+
+| 27/10/2026 | Tienda(EXTRA) | Sin uso de la IA | 
