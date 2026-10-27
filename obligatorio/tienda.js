@@ -25,6 +25,7 @@ function calcularIVA(importe) {
 	return importe * (21/100);
 }
 
+//EXTRA: si detecta un cupón, se salta el sistema de franjas de importe y aplica 15%.
 function calcularDescuento(importe) {
 	
 	if(cupon == "BIENVENIDA"){
@@ -51,7 +52,8 @@ function calcularEnvio(importe) {
 	return envio;
 }
 
-function contarAgotados(stock) {
+//Función sin utilizar en la app final
+/*function contarAgotados(stock) {
 	var agotados = 0;
 	for (var i = 0; i < stock.length; i++)
 	{
@@ -60,9 +62,9 @@ function contarAgotados(stock) {
 		}
 	}
 	return agotados;
-}
+}*/
 
-
+//Guarda el nombre del producto mas caro del array que le mandes.
 function productoMasCaro(productos, precios){
 	var masCaro = 0;
 
@@ -76,7 +78,8 @@ function productoMasCaro(productos, precios){
 	return productos[masCaro];
 }
 
-function valorInventario(precios, stock) {
+//Función sin utilizar en la app final
+/*function valorInventario(precios, stock) {
 	var valorInventario = 0;
 
 	for (var i = 0; i < precios.length; i++)
@@ -85,8 +88,9 @@ function valorInventario(precios, stock) {
 	}
 
 	return valorInventario;
-}
+}*/
 
+//Busca un producto dentro de un array de strings y devuelve su indice, devuelve -1 si no existe.
 function buscarProducto(productos, nombre) {
 
 	for (var i = 0; i < productos.length; i++){
@@ -105,11 +109,10 @@ var ticketProductos = [];
 var ticketCantidades = [];
 var ticketPrecios = [];
 var agotados = [];
-
 var restantesCantidades = [];
-
 var totalUnidades = 0;
 
+//Crea la primera tabla de procesado del pedido
 for(var i = 0; i < pedidoProductos.length; i++){
 	var indice = buscarProducto(productos, pedidoProductos[i]);
 
@@ -148,6 +151,7 @@ for(var i = 0; i < pedidoProductos.length; i++){
 console.log("");
 console.log("=== TICKET ===");
 
+//Crea la tabla del ticket con todos sus campos.
 var subtotal = 0;
 for(var i = 0; i < ticketProductos.length; i++){
 	var linea = calcularImporteLinea(ticketPrecios[i], ticketCantidades[i]);
@@ -185,8 +189,9 @@ console.log("TOTAL: " + (subtotal - descuento + iva + envio).toFixed(2) + " €"
 
 console.log("");
 console.log("=== RESUMEN ===");
-console.log("Total de unidades: " + totalUnidades);
 
+//EXTRA: Resume el pedido con el total de unidades y el producto mas caro.
+console.log("Total de unidades: " + totalUnidades);
 var masCaroTicket = productoMasCaro(ticketProductos, ticketPrecios) 
 console.log("Mayor importe: " + masCaroTicket + " (" + ticketPrecios[buscarProducto(ticketProductos, masCaroTicket)].toFixed(2) + " €)");
 
@@ -194,18 +199,21 @@ console.log("Mayor importe: " + masCaroTicket + " (" + ticketPrecios[buscarProdu
 console.log("");
 console.log("=== STOCK ACTUALIZADO ===");
 
+//Despues de actualizar los arrays, los muestra aquí.
 var string = productos[0] + ": " + stock[0];
 for(var i = 1; i < productos.length; i++){
 	string = string + " · " + productos[i] + ": " + stock[i]
 }
 console.log(string);
 
+//Muestra todos los artículos con stock a 0.
 string = "Agotados: " + agotados[0];
 for(var i = 1; i < agotados.length; i++){
 	string = string + ", " + agotados[i]
 }
 console.log(string);
 
+//Si algún artículo no se ha entregado, aparecerá aquí.
 if(agotados.length > 0){
 	console.log("");
 	console.log("=== PRODUCTOS NO SERVIDOS ===");
